@@ -1,0 +1,32 @@
+body {
+    border: black solid;
+    margin: 0;
+    padding: 10px;
+    font-family: Arial, Calibri;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 100px auto;
+    grid-gap: 10px; /*knnn*/
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../gambar/aaaaa.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+div {
+    border: black dashed;
+}
+
+.kepala{
+    grid-row: 1;
+    grid-column: 1//3;
+    background-color:white;
+}
+.samsung{
+    text-align: center;
+}
+.samsung h1 {
+    color: aqua;
+}
