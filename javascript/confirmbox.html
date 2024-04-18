@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>
+            confirm box
+        </title>
+    </head>
+    <body>
+        <h2>
+            javascript confirm box
+        </h2>
+        <button
+            onclick="myFunction()">sentuh</button>
+            <p id="demo"></p>
+            <script>
+                function myFunction() {
+                    var txt;
+                    if (confirm("logout?")) {
+                        txt = "anda klik OK";
+                    }
+                    else
+                    {
+                        txt = "anda klik cancel";
+                    }
+                    document.getElementById("demo").innerHTML=txt;
+                    }
+            </script>
+    </body>
+</html>

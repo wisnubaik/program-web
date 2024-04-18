@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dialog untuk Mengunduh dan Memutar Lagu</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+  #progressbar {
+    width: 90%;
+    margin: 20px auto;
+    background-color: #ddd;
+  }
+
+  .ui-progressbar-value {
+    background-color: #ff0; 
+  }
+</style>
+</head>
+<body>
+
+<button id="open-audio-dialog">Unduh dan Putar Lagu</button>
+
+<div id="audio-dialog" title="sebuah lagu dari Lomba Sihir" style="display: none;">
+  <audio controls id="audio-player">
+    <source id="audio-source" src="#" type="audio/mp3">
+    Browser Anda tidak mendukung elemen audio.
+  </audio>
+  <div id="progressbar"></div>
+  <button id="download-audio">Unduh</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $("#open-audio-dialog").on("click", function() {
+      $("#audio-dialog").dialog({
+        modal: true,
+        width: 400,
+        buttons: []
+      });
+
+      // Mengambil tautan audio dari elemen tautan
+      var audioLink = "audio/Lomba Sihir - Ribuan Memori.mp3";
+
+      // Memperbarui sumber audio dan tombol unduh
+      $("#audio-source").attr("src", audioLink);
+      $("#audio-player").trigger("load"); // Memuat ulang audio player agar memperbarui sumber audio
+
+      // Ketika tombol unduh diklik
+      $("#download-audio").on("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', audioLink, true);
+        xhr.responseType = 'blob';
+
+        xhr.onload = function(event) {
+          var blob = xhr.response;
+          var url = URL.createObjectURL(blob);
+
+          // Membuat tautan untuk mengunduh audio
+          var downloadLink = document.createElement("a");
+          downloadLink.href = url;
+          downloadLink.download = audioLink.split("/").pop(); // Mengambil nama file dari URL untuk digunakan sebagai nama file unduhan
+          downloadLink.click(); // Menginisiasi unduhan
+        };
+
+        xhr.onprogress = function(event) {
+          if (event.lengthComputable) {
+            var percentComplete = (event.loaded / event.total) * 100;
+            $("#progressbar").progressbar({
+              value: percentComplete
+            });
+          }
+        };
+
+        xhr.send();
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

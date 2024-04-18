@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <button id="open-dialog1">Buka Dialog 1</button>
+    <button id="open-dialog2">Buka Dialog 2</button>
+
+    <div id="dialog1" title="Dialog 1">
+        <p>Ini adalah konten dari dialog pertama.</p>
+    </div>
+
+    <div id="dialog2" title="Dialog 2" style="display: flexbox;">
+        <p>Ini adalah konten dari dialog kedua.</p>
+    </div>
+    <script>
+        $(function () {
+            $("#dialog1").dialog({
+                autoOpen: false, // Agar jendela dialog tidak terbuka secara otomatis saat halaman dimuat
+                modal: false, // membiarkan kotak dialog dapat diganti dengan yang lain tanpa perlu menutup dialog
+                buttons: {
+                    "Tutup": function () {
+                        $(this).dialog("close"); // Menutup dialog saat tombol "Tutup" diklik
+                    }
+                }
+            });
+
+            $("#open-dialog1").on("click", function () {
+                $("#dialog1").dialog("open"); // Membuka dialog saat tombol "Buka Dialog" diklik
+            });
+            $("#dialog2").dialog({
+                autoOpen: false,
+                modal: true, // mengunci kotak dialog agar fokus pada dialog ini sehingga tidak dapat mengakses dialog lainnya
+                buttons: {
+                    "Tutup": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $("#open-dialog2").on("click", function () {
+                $("#dialog2").dialog("open");
+            });
+        });
+    </script>
+</body>
+
+</html>

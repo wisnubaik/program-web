@@ -1,0 +1,11 @@
+.ui-menu {
+    width: 200px;
+    background-color: #00c427; /* Warna latar belakang */
+    border: 1px solid black; /* Warna border */
+    border-radius: 5px; /* Sudut border */
+}
+
+.ui-menu-item {
+    font-family: 'calibri', sans-serif; /* Font */
+    font-size: 14px; /* Ukuran font */
+}
